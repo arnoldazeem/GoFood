@@ -56,7 +56,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Restaurant_Model album = albumList.get(position);
         holder.title.setText(album.getName());
-        holder.count.setText(album.getNumOfSongs() + " songs");
+        //holder.count.setText(album.getNumOfSongs() + " songs");
 
         // loading album cover using Glide library
         Glide.with(mContext).load(album.getThumbnail()).into(holder.thumbnail);

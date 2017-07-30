@@ -7,15 +7,14 @@ package incop.ark.lyte.adaboo.gofood;
 public class Restaurant_Model {
 
         private String name;
-        private int numOfSongs;
+      //  private int numOfSongs;
         private int thumbnail;
 
         public Restaurant_Model() {
         }
 
-        public Restaurant_Model(String name, int numOfSongs, int thumbnail) {
+        public Restaurant_Model(String name, int thumbnail) {
             this.name = name;
-            this.numOfSongs = numOfSongs;
             this.thumbnail = thumbnail;
         }
 
@@ -27,13 +26,6 @@ public class Restaurant_Model {
             this.name = name;
         }
 
-        public int getNumOfSongs() {
-            return numOfSongs;
-        }
-
-        public void setNumOfSongs(int numOfSongs) {
-            this.numOfSongs = numOfSongs;
-        }
 
         public int getThumbnail() {
             return thumbnail;

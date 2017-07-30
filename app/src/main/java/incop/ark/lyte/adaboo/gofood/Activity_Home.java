@@ -7,6 +7,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,9 +29,8 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Activity_Home extends AppCompatActivity  {
+public class Activity_Home extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
-             //implements NavigationView.OnNavigationItemSelectedListener
 
     private RecyclerView recyclerView;
     private RestaurantAdapter adapter;
@@ -38,16 +38,38 @@ public class Activity_Home extends AppCompatActivity  {
     //my setter go here
     private List<Restaurant_Model> albumList;
 
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.collapse);
+        setContentView(R.layout.activity__home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //toolbar added drawer capabilities
+        final ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+
         initCollapsingToolbar();
+
+
+        //NAV drawer is used here
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -108,7 +130,7 @@ public class Activity_Home extends AppCompatActivity  {
              }
 
              /**
-              * Adding few albums for testing
+              * Adding few images for first page
               */
              private void prepareAlbums() {
                  int[] covers = new int[]{
@@ -124,34 +146,28 @@ public class Activity_Home extends AppCompatActivity  {
                          R.drawable.album10,
                          R.drawable.album11};
 
-                 Restaurant_Model a = new Restaurant_Model("True Romance", 13, covers[0]);
+                 Restaurant_Model a = new Restaurant_Model("ORDER NOW", covers[0]);
                  albumList.add(a);
 
-                 a = new Restaurant_Model("Xscpae", 8, covers[1]);
+                 a = new Restaurant_Model("RESTAURANTS", covers[1]);
                  albumList.add(a);
 
-                 a = new Restaurant_Model("Maroon 5", 11, covers[2]);
+                 a = new Restaurant_Model("SCHOOL LUNCH ORDERS", covers[2]);
                  albumList.add(a);
 
-                 a = new Restaurant_Model("Born to Die", 12, covers[3]);
+                 a = new Restaurant_Model("GROCERIES", covers[3]);
                  albumList.add(a);
 
-                 a = new Restaurant_Model("Honeymoon", 14, covers[4]);
+                 a = new Restaurant_Model("DELIVERY ZONES", covers[4]);
                  albumList.add(a);
 
-                 a = new Restaurant_Model("I Need a Doctor", 1, covers[5]);
+                 a = new Restaurant_Model("ABOUT US", covers[5]);
                  albumList.add(a);
 
-                 a = new Restaurant_Model("Loud", 11, covers[6]);
+                 a = new Restaurant_Model("CONTACT US", covers[6]);
                  albumList.add(a);
 
-                 a = new Restaurant_Model("Legend", 14, covers[7]);
-                 albumList.add(a);
 
-                 a = new Restaurant_Model("Hello", 11, covers[8]);
-                 albumList.add(a);
-
-                 a = new Restaurant_Model("Greatest Hits", 17, covers[9]);
                  albumList.add(a);
 
                  adapter.notifyDataSetChanged();
@@ -204,29 +220,6 @@ public class Activity_Home extends AppCompatActivity  {
                  Resources r = getResources();
                  return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
              }
-         }
-
-
-        /*
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-    }
 
     @Override
     public void onBackPressed() {
@@ -266,24 +259,47 @@ public class Activity_Home extends AppCompatActivity  {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.home) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.order_now) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.restaurants) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.school_lunch) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.groceries) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.delivery_zone) {
+
+        }else if (id == R.id.about_us) {
+
+        }else if (id == R.id.contact_us) {
 
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+}
+
+
+        /*
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+
 
     */
 

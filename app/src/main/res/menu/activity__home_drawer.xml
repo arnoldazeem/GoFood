@@ -3,34 +3,43 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/home"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="Home" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/order_now"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="ORDER NOW" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/restaurants"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="RESTAURANTS" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/school_lunch"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="SCHOOL LUNCH ORDERS" />
+
+        <item
+            android:id="@+id/groceries"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="GROCERIES" />
+
+        <item
+            android:id="@+id/delivery_zone"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="DELIVERY ZONES" />
+
+        <item
+            android:id="@+id/about_us"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="ABOUT US" />
+
+        <item
+            android:id="@+id/contact_us"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="CONTACT US" />
+
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
 
 </menu>
