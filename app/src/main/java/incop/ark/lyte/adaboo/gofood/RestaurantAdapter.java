@@ -34,7 +34,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
             title = (TextView) view.findViewById(R.id.title);
             count = (TextView) view.findViewById(R.id.count);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-            overflow = (ImageView) view.findViewById(R.id.overflow);
+            //overflow = (ImageView) view.findViewById(R.id.overflow);
         }
     }
 
@@ -61,12 +61,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
         // loading album cover using Glide library
         Glide.with(mContext).load(album.getThumbnail()).into(holder.thumbnail);
 
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showPopupMenu(holder.overflow);
-            }
-        });
+
     }
 
     /**
