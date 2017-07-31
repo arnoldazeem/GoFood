@@ -40,7 +40,7 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
     private static ViewPager mPager;
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
-    private static final Integer[] IMAGES= {R.drawable.album1,R.drawable.beach,R.drawable.album2,R.drawable.beach};
+    private static final Integer[] IMAGES= {R.drawable.banner1,R.drawable.banner2,R.drawable.banner3};
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
 
 
