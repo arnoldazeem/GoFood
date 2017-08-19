@@ -1,10 +1,13 @@
 package incop.ark.lyte.adaboo.gofood;
 
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
+import android.app.ProgressDialog;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
@@ -19,13 +22,32 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidquery.AQuery;
+import com.androidquery.callback.AjaxCallback;
+import com.androidquery.callback.AjaxStatus;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class SignUp_Fragment extends Fragment implements OnClickListener {
 	private static View view;
 	private static EditText fullName, emailId, mobileNumber, location,
-			password, confirmPassword;
+			password, confirmPassword,state,zippy;
+
 	private static TextView login;
 	private static Button signUpButton;
 	private static CheckBox terms_conditions;
+	AQuery aq;
+	ProgressDialog pDialog;
+
+    String getFullName;
+    String getEmailId;
+    String getMobileNumber;
+    String getLocation;
+    String getState;
+    String getZipcode;
+    String getPassword;
+    String getConfirmPassword;
 
 	public SignUp_Fragment() {
 
@@ -46,6 +68,8 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 		emailId = (EditText) view.findViewById(R.id.userEmailId);
 		mobileNumber = (EditText) view.findViewById(R.id.mobileNumber);
 		location = (EditText) view.findViewById(R.id.location);
+        state = (EditText) view.findViewById(R.id.state);
+        zippy = (EditText) view.findViewById(R.id.zipcode);
 		password = (EditText) view.findViewById(R.id.password);
 		confirmPassword = (EditText) view.findViewById(R.id.confirmPassword);
 		signUpButton = (Button) view.findViewById(R.id.signUpBtn);
@@ -83,12 +107,14 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 	private void checkValidation() {
 
 		// Get all edittext texts
-		String getFullName = fullName.getText().toString();
-		String getEmailId = emailId.getText().toString();
-		String getMobileNumber = mobileNumber.getText().toString();
-		String getLocation = location.getText().toString();
-		String getPassword = password.getText().toString();
-		String getConfirmPassword = confirmPassword.getText().toString();
+		 getFullName = fullName.getText().toString();
+		 getEmailId = emailId.getText().toString();
+		 getMobileNumber = mobileNumber.getText().toString();
+		 getLocation = location.getText().toString();
+         getState = state.getText().toString();
+         getZipcode = zippy.getText().toString();
+		 getPassword = password.getText().toString();
+		 getConfirmPassword = confirmPassword.getText().toString();
 
 		// Pattern match for email id
 		Pattern p = Pattern.compile(Utils.regEx);
@@ -99,6 +125,8 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 				|| getEmailId.equals("") || getEmailId.length() == 0
 				|| getMobileNumber.equals("") || getMobileNumber.length() == 0
 				|| getLocation.equals("") || getLocation.length() == 0
+                || getState.equals("") || getState.length() == 0
+                || getZipcode.equals("") || getZipcode.length() == 0
 				|| getPassword.equals("") || getPassword.length() == 0
 				|| getConfirmPassword.equals("")
 				|| getConfirmPassword.length() == 0)
@@ -126,5 +154,76 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 			Toast.makeText(getActivity(), "Do SignUp.", Toast.LENGTH_SHORT)
 					.show();
 
+        doStaff();
+
 	}
+
+
+
+    private void doStaff() {
+        // TODO Auto-generated method stub
+        pDialog.setMessage("Registering..");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+
+        Map<String, Object> params = new HashMap<String, Object>();
+        aq.progress(pDialog).ajax(
+                StaticVariables.registerUrl + "register&name="
+                        + getFullName + "&password=" + getPassword
+                        + "&email=" + getEmailId + "&street=" + getLocation
+                        + "&zipcode=" + getZipcode + "&state=" + getState
+                        + "&phone=" + getMobileNumber,
+
+
+
+                params, JSONObject.class, new AjaxCallback<JSONObject>() {
+                    @Override
+                    public void callback(String url, JSONObject json,
+                                         AjaxStatus status) {
+
+                        try {
+
+                            System.out.println(json.toString());
+                            int success = json.getInt(StaticVariables.SUCCESS);
+
+                            if (success == 1) {
+                                Toast.makeText(
+                                       getActivity(),
+                                        json.getString(StaticVariables.MESSAGE),
+                                        Toast.LENGTH_LONG).show();
+
+                                fullName.setText("");
+                                emailId.setText("");
+                                mobileNumber.setText("");
+                                location.setText("");
+                                state.setText("");
+                                zippy.setText("");
+                                password.setText("");
+                                confirmPassword.setText("");
+
+
+                            } else {
+                                Toast.makeText(
+                                        getActivity(),
+                                        json.getString(StaticVariables.MESSAGE),
+                                        Toast.LENGTH_LONG).show();
+                            }
+
+                        } catch (JSONException e) {
+                            // TODO: handle exception
+                            e.printStackTrace();
+                        } catch (Exception ex) {
+                            // TODO: handle exception
+                            ex.printStackTrace();
+                            System.out.println("********************* "
+                                    + ex.toString());
+                            Toast.makeText(getActivity(),
+                                    "Server cannot be found", Toast.LENGTH_LONG)
+                                    .show();
+                        }
+
+                    }
+                });
+
+    }
 }

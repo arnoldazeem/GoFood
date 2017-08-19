@@ -1,10 +1,14 @@
 package incop.ark.lyte.adaboo.gofood;
 
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
@@ -27,6 +31,10 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.androidquery.AQuery;
+import com.androidquery.callback.AjaxCallback;
+import com.androidquery.callback.AjaxStatus;
+import org.json.JSONObject;
 
 public class Login_Fragment extends Fragment implements OnClickListener {
 	private static View view;
@@ -38,6 +46,10 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 	private static LinearLayout loginLayout;
 	private static Animation shakeAnimation;
 	private static FragmentManager fragmentManager;
+    ProgressDialog pDialog;
+    AQuery aq;
+    SessionManager session;
+    String getEmailId,getPassword;
 
 	public Login_Fragment() {
 
@@ -54,7 +66,10 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 
 	// Initiate Views
 	private void initViews() {
+
+
 		fragmentManager = getActivity().getSupportFragmentManager();
+        session = new SessionManager(getActivity().getApplicationContext());
 
 		emailid = (EditText) view.findViewById(R.id.input_email);
 		password = (EditText) view.findViewById(R.id.input_password);
@@ -148,8 +163,8 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 	// Check Validation before login
 	private void checkValidation() {
 		// Get email id and password
-		String getEmailId = emailid.getText().toString();
-		String getPassword = password.getText().toString();
+         getEmailId = emailid.getText().toString();
+		 getPassword = password.getText().toString();
 
 		// Check patter for email id
 		Pattern p = Pattern.compile(Utils.regEx);
@@ -170,8 +185,75 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 					"Your Email Id is Invalid.");
 		// Else do login and do your stuff
 		else
-			Toast.makeText(getActivity(), "Do Login.", Toast.LENGTH_SHORT)
-					.show();
+			//Toast.makeText(getActivity(), "Do Login.", Toast.LENGTH_SHORT)
+			//		.show();
+            login();
 
 	}
+
+
+
+
+	//login
+    private void login() {
+        // TODO Auto-generated method stub
+        pDialog.setMessage("Loging in..");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+
+        Map<String, Object> params = new HashMap<String, Object>();
+        aq.progress(pDialog).ajax(
+                StaticVariables.loginUrl + "login&username=" + getEmailId
+                        + "&password=" + getPassword, params,
+                JSONObject.class,
+
+                new AjaxCallback<JSONObject>() {
+                    @Override
+                    public void callback(String url, JSONObject json,
+                                         AjaxStatus status) {
+
+                        try {
+
+                            System.out.println(json.toString());
+                            int success = json.getInt(StaticVariables.SUCCESS);
+
+                            if (success == 1) {
+
+                                int id = json.getInt(StaticVariables.USER_ID);
+
+                                session.createLoginSession(id);
+
+                                Intent intent = new Intent(getActivity(),
+                                        Yenfa_Bus.class);
+
+                                intent.putExtra("user_id", id);
+                                startActivity(intent);
+                                finish();
+
+                            } else {
+
+                                Toast.makeText(
+                                        getActivity(),
+                                        json.getString(StaticVariables.MESSAGE),
+                                        Toast.LENGTH_LONG).show();
+                            }
+
+                        } catch (Exception ex) {
+                            // TODO: handle exception
+                            ex.printStackTrace();
+                            System.out.println("********************* "
+                                    + ex.toString());
+                            Toast.makeText(getActivity(),
+                                    "Server cannot be found", Toast.LENGTH_LONG)
+                                    .show();
+                        }
+
+                    }
+                });
+
+    }
+
+
+
+
 }

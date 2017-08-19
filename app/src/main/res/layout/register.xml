@@ -103,6 +103,61 @@
         android:layout_height="1px"
         android:background="@color/white_greyish" />
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:padding="2dp" >
+
+    <EditText
+        android:id="@+id/state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/location"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:layout_weight="1"
+        android:hint="@string/state"
+        android:inputType="textCapWords"
+        android:padding="10dp"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:layout_weight="0.2" />
+
+    <EditText
+        android:layout_weight="1"
+        android:id="@+id/zipcode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/location"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:hint="@string/zipcode"
+        android:inputType="textCapWords"
+        android:padding="10dp"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="16sp" />
+
+</LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/white_greyish" />
+
+
     <EditText
         android:id="@+id/password"
         android:layout_width="fill_parent"
@@ -141,6 +196,11 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="16sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/white_greyish" />
 
     <CheckBox
         android:id="@+id/terms_conditions"
