@@ -223,12 +223,12 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 
                                 session.createLoginSession(id);
 
-                                Intent intent = new Intent(getActivity(),
-                                        Yenfa_Bus.class);
+                                //Intent intent = new Intent(getActivity(),
+                                //        Yenfa_Bus.class);
 
-                                intent.putExtra("user_id", id);
-                                startActivity(intent);
-                                finish();
+                               /// intent.putExtra("user_id", id);
+                               // startActivity(intent);
+                               // finish();
 
                             } else {
 
