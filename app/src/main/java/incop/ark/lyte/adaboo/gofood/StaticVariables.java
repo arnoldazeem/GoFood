@@ -4,9 +4,9 @@ package incop.ark.lyte.adaboo.gofood;
 public class StaticVariables {
 
 	public static String updateUrl = "http://192.168.42.237/yenfabus/updateLongLat.php?type=";
-	public static String selectUrl = "http://192.168.42.237/yenfabus/getLongLat.php?type=";
-	public static String loginUrl = "http://192.168.42.237/yenfabus/login.php?type=";
-	public static String registerUrl = "https://localhost/yenfabus/register.php?type=";
+	public static String selectUrl = "https://kylewbanks.com/rest/posts.json";
+	public static String loginUrl = "http://192.168.42.16/gofood/requestCompany.php";
+	public static String registerUrl = "http://192.168.42.16/yenfa/update_items.php";
 	public static String busStopUrl = "http://192.168.42.237/yenfabus/retrieve.php?type=";
 	public static String subs_checkUrl = "http://192.168.42.237/yenfabus/subscription_check.php?type=";
 	public static String subscription = "http://192.168.42.237/yenfabus/subscribe.php?type=";

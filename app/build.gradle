@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "incop.ark.lyte.adaboo.gofood"
-        minSdkVersion 11
+        minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -26,8 +26,11 @@ dependencies {
     })
 
 
+    compile 'com.thefinestartist:finestwebview:1.2.7'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
     compile 'com.android.volley:volley:1.0.0'
-
+    compile 'com.google.code.gson:gson:2.4'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'

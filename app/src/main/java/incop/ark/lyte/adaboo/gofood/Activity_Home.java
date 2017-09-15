@@ -1,5 +1,6 @@
 package incop.ark.lyte.adaboo.gofood;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -94,6 +96,55 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+
+
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(Activity_Home.this, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // TODO Handle item click
+
+                        try {
+
+                            if (position == 0) {
+
+                                Intent myIntent = new Intent(Activity_Home.this, OrderNow.class);
+                                //myIntent.putExtra("key", value); //Optional parameters
+                                startActivity(myIntent);
+
+                            } else if (position == 1) {
+
+                                Intent myIntent = new Intent(Activity_Home.this, GetRestaurants.class);
+                                //myIntent.putExtra("key", value); //Optional parameters
+                                startActivity(myIntent);
+
+                            } else if (position == 2) {
+
+                                Intent myIntent = new Intent(Activity_Home.this, GetRestaurants.class);
+                                //myIntent.putExtra("key", value); //Optional parameters
+                                startActivity(myIntent);
+
+
+                            } else if (position == 3) {
+
+                            } else if (position == 4) {
+
+                            } else if (position == 5) {
+
+                            }else if (position == 6) {
+
+                            }else if (position == 7) {
+
+                            }
+
+
+
+                        }catch (Exception ex){
+
+                        }
+
+                    }
+                })
+        );
 
 
 
@@ -278,6 +329,11 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
 
         } else if (id == R.id.restaurants) {
 
+            Intent myIntent = new Intent(Activity_Home.this, GetRestaurants.class);
+            //myIntent.putExtra("key", value); //Optional parameters
+            startActivity(myIntent);
+
+
         } else if (id == R.id.school_lunch) {
 
         } else if (id == R.id.groceries) {
@@ -316,7 +372,7 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
 
         final float density = getResources().getDisplayMetrics().density;
 
-//Set circle indicator radius
+        //Set circle indicator radius
         indicator.setRadius(5 * density);
 
         NUM_PAGES =IMAGES.length;

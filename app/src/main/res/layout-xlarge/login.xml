@@ -2,29 +2,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:padding="20dp" >
+    android:gravity="center"
+    android:padding="40dp" >
 
     <LinearLayout
         android:id="@+id/login_layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="56dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:layout_height="wrap_content">
 
         <ImageView android:src="@mipmap/gofood"
             android:layout_width="wrap_content"
-            android:layout_height="72dp"
-            android:layout_marginBottom="24dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal" />
 
         <!-- Email Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp">
 
             <EditText android:id="@+id/input_email"
                 android:layout_width="match_parent"
@@ -37,8 +34,9 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp">
+
             <EditText android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,7 +58,7 @@
                 android:layout_weight="1"
                 android:text="@string/show_pwd"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="34sp" />
 
             <TextView
                 android:id="@+id/forgot_password"
@@ -71,7 +69,7 @@
                 android:padding="5dp"
                 android:text="@string/forgot"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="34sp" />
 
 
         </LinearLayout>
@@ -87,7 +85,7 @@
             android:padding="3dp"
             android:text="@string/login"
             android:textColor="#009688"
-            android:textSize="17sp"
+            android:textSize="34sp"
             android:textStyle="bold" />
 
 
@@ -96,10 +94,9 @@
         <TextView android:id="@+id/link_signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
             android:text="No account yet? Create one"
             android:gravity="center"
-            android:textSize="16dip"/>
+            android:textSize="34dip"/>
 
     </LinearLayout>
 
