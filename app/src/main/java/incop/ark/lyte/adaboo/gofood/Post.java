@@ -15,8 +15,8 @@ public class Post {
     @SerializedName("date")
     Date dateCreated;
 
-    String title;
-    String company_name;
+    String results;
+    String Status;
     String company_image;
     String body;
 

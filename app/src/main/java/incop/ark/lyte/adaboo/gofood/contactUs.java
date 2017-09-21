@@ -17,26 +17,16 @@ import java.util.List;
 public class contactUs extends AppCompatActivity  {
 
     //for the sliding view
-    private static ViewPager mPager;
-    private static int currentPage = 0;
-    private static int NUM_PAGES = 0;
-    private static final Integer[] IMAGES= {R.drawable.banner1,R.drawable.banner2,R.drawable.banner3};
-    private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
 
 
     private RecyclerView recyclerView;
     private RestaurantAdapter adapter;
 
-    //my setter go here
-    private List<Restaurant_Model> albumList;
-
-    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contactus);
-
 
 
        }

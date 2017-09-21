@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+        <RelativeLayout android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true">
+
+
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/a"
+            android:gravity="center"
+            android:src="@drawable/logo"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/ord"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How to Place Order"
+            android:layout_toRightOf="@+id/a"
+            android:textSize="20sp"
+            android:textColor="@color/Color_Red"
+            android:gravity="center_horizontal" />
+
+        <WebView android:id="@+id/webview1"
+            android:layout_above="@+id/text_dialog"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textColor="@color/Color_Red"
+            android:layout_weight="1"/>
+        </RelativeLayout>
+
+
+    <RelativeLayout
+        android:gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dialogButtonOK"/>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

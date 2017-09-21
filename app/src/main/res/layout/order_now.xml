@@ -56,11 +56,10 @@
 
 
     <Button
-        android:layout_weight="0.1"
         android:layout_gravity="center"
         android:textColor="#ffffff"
         android:text="How to place an order"
-        android:id="@id/order_now"
+        android:id="@+id/order_nw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/orderbutton" />

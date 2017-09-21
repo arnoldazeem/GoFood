@@ -1,5 +1,6 @@
 package incop.ark.lyte.adaboo.gofood;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -25,7 +26,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -79,7 +82,7 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -119,20 +122,26 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
 
                             } else if (position == 2) {
 
-                                Intent myIntent = new Intent(Activity_Home.this, GetRestaurants.class);
+                                Intent myIntent = new Intent(Activity_Home.this, PostActivity.class);
                                 //myIntent.putExtra("key", value); //Optional parameters
                                 startActivity(myIntent);
 
 
                             } else if (position == 3) {
-
+                                alertme();
                             } else if (position == 4) {
 
                             } else if (position == 5) {
 
                             }else if (position == 6) {
 
+                                alertme();
+
                             }else if (position == 7) {
+
+                                Intent myInten = new Intent(Activity_Home.this, contactUs.class);
+                                //myIntent.putExtra("key", value); //Optional parameters
+                                startActivity(myInten);
 
                             }
 
@@ -186,7 +195,7 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
                              collapsingToolbar.setTitle(getString(R.string.app_name));
                              isShow = true;
                          } else if (isShow) {
-                             collapsingToolbar.setTitle(" ");
+                             collapsingToolbar.setTitle(getString(R.string.app_name));
                              isShow = false;
                          }
                      }
@@ -205,10 +214,7 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
                          R.drawable.album5,
                          R.drawable.album6,
                          R.drawable.album7,
-                         R.drawable.album8,
-                         R.drawable.album9,
-                         R.drawable.album10,
-                         R.drawable.album11};
+                        };
 
                  Restaurant_Model a = new Restaurant_Model("ORDER NOW", covers[0]);
                  albumList.add(a);
@@ -232,7 +238,7 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
                  albumList.add(a);
 
 
-                 albumList.add(a);
+                 //albumList.add(a);
 
                  adapter.notifyDataSetChanged();
              }
@@ -326,6 +332,10 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
         if (id == R.id.home) {
             // Handle the camera action
         } else if (id == R.id.order_now) {
+            Intent myIntent = new Intent(Activity_Home.this, OrderNow.class);
+            //myIntent.putExtra("key", value); //Optional parameters
+            startActivity(myIntent);
+
 
         } else if (id == R.id.restaurants) {
 
@@ -342,7 +352,13 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
 
         }else if (id == R.id.about_us) {
 
+            alertme();
+
         }else if (id == R.id.contact_us) {
+
+            Intent myInten = new Intent(Activity_Home.this, contactUs.class);
+            //myIntent.putExtra("key", value); //Optional parameters
+            startActivity(myInten);
 
         }
 
@@ -353,10 +369,41 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
     }
 
 
+    //alert
+
+   public void alertme(){
+
+
+        // custom dialog
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.about_us);
+        dialog.setTitle("ABOUT US.");
+
+        // set the custom dialog components - text, image and button
+        TextView text = (TextView) dialog.findViewById(R.id.text);
+        text.setText("Android custom dialog example!");
+        ImageView image = (ImageView) dialog.findViewById(R.id.image);
+        //image.setImageResource(R.drawable.ic_launcher);
+
+        Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+        // if button is clicked, close the custom dialog
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+
+
 
     //for the view pager
     private void init() {
         for(int i=0;i<IMAGES.length;i++)
+
             ImagesArray.add(IMAGES[i]);
 
         mPager = (ViewPager) findViewById(R.id.pager);
@@ -419,6 +466,11 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
 
 
 }
+
+
+
+
+
 
 
         /*

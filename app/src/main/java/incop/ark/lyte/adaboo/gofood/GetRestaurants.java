@@ -42,6 +42,7 @@ public class GetRestaurants  extends AppCompatActivity {
 
 
     GridView grid;
+
     String[] web = {
             "Tasty Bites",
             "Kopitiam",
