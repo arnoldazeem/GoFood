@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -22,6 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,11 +36,7 @@ import java.util.List;
     //private static final String ENDPOINT = "https://kylewbanks.com/rest/posts.json";
 
     public class PostActivity extends AppCompatActivity {
-        // Will show the string "data" that holds the results
-        //TextView results;
-        // URL of object to be parsed
-       // String JsonURL = "https://raw.githubusercontent.com/ianbar20/JSON-Volley-Tutorial/master/Example-JSON-Files/Example-Object.JSON";
-        // This string will hold the results
+
        private static final String JsonURL = "https://gofoodpng.biz/api/hello/get_categories_tastybites/";
         private ProgressBar progressBar;
         // String data = "";
@@ -44,6 +44,7 @@ import java.util.List;
         RequestQueue requestQueue;
         ProgressDialog progress;
         JSONArray  products  = null;
+        GridView grid;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -65,32 +66,49 @@ import java.util.List;
                 public void onResponse(JSONObject response) {
                 // TODO Auto-generated method stub
 
+                    ArrayList<restaurant_List_Bulk> items = new ArrayList<restaurant_List_Bulk>();
                     try {
-
 
                     if (response != null) {
 
-
-
                         products = response.getJSONArray("results");
 
-                        for (int i = 0; i <= products.length();  i++) {
+                        for (int i = 0; i < products.length();  i++) {
 
+                            String all = products.get(i).toString();
 
-                        Toast.makeText(PostActivity.this, products.get(i).toString(),
-                                Toast.LENGTH_SHORT).show();
+                           // List<restaurant_List_Bulk> elephantList = Arrays.asList(all.split(","));
+                            String[] separated = all.split(",");
 
-                        //Log.d(e,response.toString());
+                            if (separated.length == 3){
 
+                            items.add(new restaurant_List_Bulk( separated[1],separated[0],separated[2]));
+                            }else{
+
+                                items.add(new restaurant_List_Bulk( separated[0],separated[1],null));
+                            }
                         }
 
-                        }
 
-                    }//catch (JSONException e) {
-                        // TODO: handle exception
-                       // e.printStackTrace();
-                    //}
-                    catch (Exception ex) {
+                        Postactivity_adapter adapter = new Postactivity_adapter(PostActivity.this, items);
+                        grid=(GridView)findViewById(R.id.grid);
+                        grid.setAdapter(adapter);
+                        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view,
+                                                    int position, long id) {
+                               // Toast.makeText(PostActivity.this, "You Clicked at " +item[+ position], Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+
+                    }
+
+                    }catch (JSONException e) {
+                            // TODO: handle exception
+                            e.printStackTrace();
+                        } catch (Exception ex) {
                         // TODO: handle exception
                         ex.printStackTrace();
                         System.out.println("********************* "
@@ -100,8 +118,7 @@ import java.util.List;
                                 .show();
                     }
 
-
-                    progress.dismiss();
+                            progress.dismiss();
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -109,8 +126,15 @@ import java.util.List;
                 // TODO Auto-generated method stub
                     progress.dismiss();
                 }
-            });
+
+
+
+
+                });
             requestQueue.add(jsObjRequest);
+
+
+
         }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
