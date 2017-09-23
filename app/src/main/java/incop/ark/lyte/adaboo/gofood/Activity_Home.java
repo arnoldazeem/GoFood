@@ -132,19 +132,35 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
                             } else if (position == 4) {
 
                             } else if (position == 5) {
+                                // custom dialog
+                                final Dialog dialog = new Dialog(Activity_Home.this);
+                                dialog.setContentView(R.layout.about_us);
+                                dialog.setTitle("ABOUT US.");
 
+                                // set the custom dialog components - text, image and button
+                                TextView text = (TextView) dialog.findViewById(R.id.text);
+                                text.setText("Android custom dialog example!");
+                                ImageView image = (ImageView) dialog.findViewById(R.id.image);
+                                //image.setImageResource(R.drawable.ic_launcher);
+
+                                Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+                                // if button is clicked, close the custom dialog
+                                dialogButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                                dialog.show();
+                                
                             }else if (position == 6) {
-
-                                alertme();
-
-                            }else if (position == 7) {
 
                                 Intent myInten = new Intent(Activity_Home.this, contactUs.class);
                                 //myIntent.putExtra("key", value); //Optional parameters
                                 startActivity(myInten);
 
                             }
-
 
 
                         }catch (Exception ex){
