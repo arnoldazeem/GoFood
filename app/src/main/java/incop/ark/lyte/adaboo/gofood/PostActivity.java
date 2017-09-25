@@ -53,7 +53,6 @@ import java.util.List;
             // Creates the Volley request queue
              requestQueue = Volley.newRequestQueue(this);
 
-            String url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyBmSXUzVZBKQv9FJkTpZXn0dObKgEQOIFU&cx=014099860786446192319:t5mr0xnusiy&q=AndroidDev&alt=json&searchType=image";
            // progressBar=(ProgressBar)findViewById(R.id.progressBar);
 
             progress = new ProgressDialog(this);
@@ -71,7 +70,11 @@ import java.util.List;
 
                     if (response != null) {
 
+
                         products = response.getJSONArray("results");
+
+
+
 
                         for (int i = 0; i < products.length();  i++) {
 

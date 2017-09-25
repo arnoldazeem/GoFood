@@ -1,5 +1,6 @@
 package incop.ark.lyte.adaboo.gofood;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
@@ -7,17 +8,30 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,92 +52,93 @@ public class contactUs extends AppCompatActivity  {
 
     final String TAG = this.getClass().getSimpleName();
 
+
+    String url ="https://gofoodpng.biz/api/hello/place_order/?itemname=1&sububurb=Alice&quantity=Alice";
+
+    private ProgressBar progressBar;
+    // String data = "";
+    // Defining the Volley request queue that handles the URL request concurrently
+    RequestQueue requestQueue;
+    ProgressDialog progress;
+    JSONArray products  = null;
+    GridView grid;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contactus);
 
-        String url = "https://gofoodpng.biz/api/hello/place_order/";
+        //String url = "https://gofoodpng.biz/api/hello/place_order";
+        //requestQueue = Volley.newRequestQueue(this);
 
-        // Formulate the request and handle the response.
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+        // progressBar=(ProgressBar)findViewById(R.id.progressBar);
 
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Do something with the response
+        /**
+        progress = new ProgressDialog(this);
+        //initialize the progress dialog and show it
+        progress.setMessage("loading The data....");
+        progress.show();
 
-                        //response was perfect
-                        Log.d(TAG,response );
-
-                        //Post post = gson.fromJson(response, Post.class);
-
-                        //Log.d(TAG, post.toString() );
-
-                        // List<Post> posts = Arrays.asList(gson.fromJson(response, Post[].class));
-                        // Log.i("PostActivity", posts.size() + " posts loaded.");
-                        //for (Post post : posts) {
-                        //   Log.i("PostActivity", post.company_name + ": " + post.company_image);
-                        // }
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                        // Handle error
-
-                        if(error instanceof TimeoutError){
-
-
-                        }else if (error instanceof NoConnectionError){
-
-
-                        }else if (error instanceof NetworkError){
-
-
-                        }else if (error instanceof ServerError){
-
-
-                        }else if (error instanceof AuthFailureError){
-
-
-                        }else if (error instanceof ParseError){
-
-
-                        }
-
-                        //Log.d(TAG,error.toString() );
-                    }
-                }){
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            public void onResponse(JSONObject response) {
+                // TODO Auto-generated method stub
 
-                Map<String, String> params = new HashMap<>();
+                ArrayList<restaurant_List_Bulk> items = new ArrayList<restaurant_List_Bulk>();
+                try {
 
+                    if (response != null) {
 
-               // https://gofoodpng.biz/api/hello/place_order/?itemname=1&sububurb=Alice&quantity=Alice
+                     // String  products = response.get("status");
+                        Log.d(TAG,  response.get("status").toString());
 
+                    }
 
-                params.put("itemname","arnold");
-                params.put("sububurb","12");
-                params.put("quantity","mile");
+                }catch (JSONException e) {
+                    // TODO: handle exception
+                    e.printStackTrace();
+                } catch (Exception ex) {
+                    // TODO: handle exception
+                    ex.printStackTrace();
+                    System.out.println("********************* "
+                            + ex.toString());
+                    Toast.makeText(contactUs.this,
+                            ex.toString(), Toast.LENGTH_LONG)
+                            .show();
+                }
 
-                return params;
+                progress.dismiss();
             }
-        };
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // TODO Auto-generated method stub
+                progress.dismiss();
+            }
 
 
 
-        // Add a request (in this example, called stringRequest) to your RequestQueue.
-        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
+
+        });
+        requestQueue.add(jsObjRequest);
+
+
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.activity__home, menu);
+        return true;
+    }
+
+}
+
+*/
+
 
     }
 
 
-
-       }
-
-
-    }
+}

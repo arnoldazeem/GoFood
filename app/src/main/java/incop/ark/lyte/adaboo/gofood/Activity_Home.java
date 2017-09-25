@@ -26,8 +26,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -126,40 +128,21 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
                                 //myIntent.putExtra("key", value); //Optional parameters
                                 startActivity(myIntent);
 
-
                             } else if (position == 3) {
                                 alertme();
                             } else if (position == 4) {
 
+                                Toast.makeText(Activity_Home.this, "You Clicked at " + position , Toast.LENGTH_SHORT).show();
+
                             } else if (position == 5) {
-                                // custom dialog
-                                final Dialog dialog = new Dialog(Activity_Home.this);
-                                dialog.setContentView(R.layout.about_us);
-                                dialog.setTitle("ABOUT US.");
 
-                                // set the custom dialog components - text, image and button
-                                TextView text = (TextView) dialog.findViewById(R.id.text);
-                                text.setText("Android custom dialog example!");
-                                ImageView image = (ImageView) dialog.findViewById(R.id.image);
-                                //image.setImageResource(R.drawable.ic_launcher);
+                                alertme();
 
-                                Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
-                                // if button is clicked, close the custom dialog
-                                dialogButton.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        dialog.dismiss();
-                                    }
-                                });
-
-                                dialog.show();
-                                
                             }else if (position == 6) {
 
                                 Intent myInten = new Intent(Activity_Home.this, contactUs.class);
                                 //myIntent.putExtra("key", value); //Optional parameters
                                 startActivity(myInten);
-
                             }
 
 
@@ -332,9 +315,6 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -389,28 +369,16 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
 
    public void alertme(){
 
+       final Dialog dialog = new Dialog(this);
+       dialog.setContentView(R.layout.dialog_justified);
+       dialog.setTitle("ABOUT US.");
+       WebView view = new WebView(this);
+       view.setVerticalScrollBarEnabled(false);
+       ((RelativeLayout) dialog.findViewById(R.id.linear)).addView(view);
+       view.loadData(getString(R.string.about), "text/html; charset=utf-8", "utf-8");
 
-        // custom dialog
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.about_us);
-        dialog.setTitle("ABOUT US.");
 
-        // set the custom dialog components - text, image and button
-        TextView text = (TextView) dialog.findViewById(R.id.text);
-        text.setText("Android custom dialog example!");
-        ImageView image = (ImageView) dialog.findViewById(R.id.image);
-        //image.setImageResource(R.drawable.ic_launcher);
-
-        Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
-        // if button is clicked, close the custom dialog
-        dialogButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
+       dialog.show();
     }
 
 

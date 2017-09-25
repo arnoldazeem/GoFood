@@ -61,8 +61,8 @@
         android:layout_gravity="center_horizontal"
         android:background="@color/colorPrimaryDark"
         android:elevation="4dp"
-        android:paddingLeft="70dp"
-        android:paddingRight="70dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
         android:text="Submit"
         android:textColor="#fff" />
 </LinearLayout>
