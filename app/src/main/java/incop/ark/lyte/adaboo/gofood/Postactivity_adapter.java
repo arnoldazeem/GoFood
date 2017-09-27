@@ -62,7 +62,7 @@ public class Postactivity_adapter extends BaseAdapter {
             TextView textnum = (TextView) grid.findViewById(R.id.grid_num);
             ImageView imageView = (ImageView)grid.findViewById(R.id.grid_image);
             textView.setText(items.getName());
-            textView.setText(items.getMenu());
+            textnum.setText(items.getMenu());
             // picasso
             Picasso.with(mContext)
                     .load(items.getThumbnail())

@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         card_view:cardBackgroundColor="@android:color/transparent"
-        android:layout_margin="@dimen/card_margin"
+        android:layout_margin="2dp"
         android:elevation="3dp"
         card_view:cardCornerRadius="@dimen/card_album_radius">
 
@@ -26,16 +26,14 @@
                 android:scaleType="fitXY" />
 
             <TextView
+                android:background="@color/cardview_dark_background"
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/thumbnail"
-                android:paddingLeft="@dimen/album_title_padding"
-                android:paddingRight="@dimen/album_title_padding"
-                android:paddingTop="@dimen/album_title_padding"
-                android:textColor="@color/album_title"
-                android:textSize="@dimen/album_title" />
-
+                android:padding="2dp"
+                android:textColor="@color/white"
+                />
 
         </RelativeLayout>
 

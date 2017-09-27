@@ -11,7 +11,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/gofood"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:largeHeap="true">
+
         <activity
             android:name=".Activity_Home"
             android:label="@string/app_name"

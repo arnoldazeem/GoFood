@@ -74,8 +74,6 @@ import java.util.List;
                         products = response.getJSONArray("results");
 
 
-
-
                         for (int i = 0; i < products.length();  i++) {
 
                             String all = products.get(i).toString();
@@ -85,10 +83,10 @@ import java.util.List;
 
                             if (separated.length == 3){
 
-                            items.add(new restaurant_List_Bulk( separated[1],separated[0],separated[2]));
+                            items.add(new restaurant_List_Bulk( separated[0],separated[1],separated[2]));
                             }else{
 
-                                items.add(new restaurant_List_Bulk( separated[0],separated[1],null));
+                               // items.add(new restaurant_List_Bulk( separated[0],separated[1],null));
                             }
                         }
 
@@ -101,7 +99,7 @@ import java.util.List;
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view,
                                                     int position, long id) {
-                               // Toast.makeText(PostActivity.this, "You Clicked at " +item[+ position], Toast.LENGTH_SHORT).show();
+                               Toast.makeText(PostActivity.this, "You Clicked at " + position, Toast.LENGTH_SHORT).show();
 
                             }
                         });

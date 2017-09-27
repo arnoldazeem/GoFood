@@ -41,6 +41,48 @@ Imperdiet id felis lectus accumsan class, neque nullam quam, adipiscing turpis v
     <string name="submit">SUBMIT</string>
     <string name="back">BACK</string>
 
+    <string name="lunch">
+        <![CDATA[
+        <html>
+         <head></head>
+         <body style="text-align:justify;color:red;background-color:black;">
+        "<p> Coming soon to students and teachers at schools around Port Moresby!</p>"
+          </body>
+        </html>
+        ]]>
+</string>
+
+
+    <string name="grocery">
+        <![CDATA[
+        <html>
+         <head></head>
+         <body style="text-align:justify;color:red;background-color:black;">
+        "<p> Order online and get your groceries delivered to your doorstep…Coming soon!</p>"
+          </body>
+        </html>
+        ]]>
+</string>
+
+
+    <string name="delivery">
+        <![CDATA[
+        <html>
+         <head></head>
+         <body style="text-align:justify;color:red;background-color:black;">
+         "<p>K25 | Zone 1 CBD</p>"
+         "<p>  2 Mile, 3 Mile, 4 Mile, 5 Mile, Badili, Boroko, East Boroko, Ela Beach, Gabutu, Gordons, Gordons 5, Gordons Industrials, Hohola, Kaevaga, Koki, Konedobu, Korobosea, Murray Barracks, New Town, Town, Waigani.
+            </p>"
+         "<p>K30 | Zone 2</p>"
+        "<p> 6 Mile, 7 Mile, 8 Mile, Ensisi Valley, Erima, Gerehu, Kaugere, Kilakila, Morata, Renbo Estate, Sabama, Taurama, Tokarara, UPNG, Waigani North.
+        </p>"
+        "<p> K40 | Zone 3</p>"
+        "<p>9 Mile, 10 Mile, 11 Mile, 12 Mile, 13 Mile, 14 Mile, 15 Mile, 16 Mile, 17 Mile.</p>"
+          </body>
+        </html>
+        ]]>
+</string>
+
 
     <string name="about">
         <![CDATA[

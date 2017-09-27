@@ -1,5 +1,6 @@
 package incop.ark.lyte.adaboo.gofood;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -33,7 +34,22 @@ public class GetRestaurants  extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
-                    Toast.makeText(GetRestaurants.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
+
+                    switch(position)
+                    {
+                        case 0:
+                            Intent new1Activity = new Intent(GetRestaurants.this,PostActivity.class);
+                            startActivity(new1Activity);
+                            break;
+                        case 1:
+                            Intent myIntent = new Intent(GetRestaurants.this, PostActivity.class);
+                            //myIntent.putExtra("key", value); //Optional parameters
+                            startActivity(myIntent);
+                            break;
+                        default:
+                            Toast.makeText(GetRestaurants.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
+
+                    }
 
                 }
             });
@@ -45,27 +61,36 @@ public class GetRestaurants  extends AppCompatActivity {
 
     String[] web = {
             "Tasty Bites",
+            "Golden Bowl",
             "Kopitiam",
             "Beijing Noodle House",
-            "Enzo's Express Takeaway",
             "Buffalo Burger",
-            "Cellar-Restaurant",
-            "Golden Bowl",
             "Mr Mikes",
-            "Big Boi Burger",
+            "Cellar-Restaurant",
+            "Enzo's Express Takeaway",
             "Fusion Bistro",
+            "LAMANA",
+            "Big Boi Burger",
+            "Tandoor on the Harbour",
+            "Royal Papua Yacht Club Restaurant",
+            "Mojo Social Restaurant",
     } ;
-    String [] imageId = {
-            "https://gofoodpng.biz/wp-content/uploads/2017/01/Tasty-Bites-Logo.png",
-            "https://gofoodpng.biz/wp-content/uploads/2017/01/Kopitiam-logo-small.png",
-            "https://gofoodpng.biz/wp-content/uploads/2017/02/Beijing-Noodle-HouseLogo.png",
-            "https://gofoodpng.biz/wp-content/uploads/2017/02/Enzos-logo-NEW.png",
-            "https://gofoodpng.biz/wp-content/uploads/2017/02/Buffalo-logo-20.png",
-            "https://gofoodpng.biz/wp-content/uploads/2017/02/The-cellar-restaurant-400x270.png",
-            "https://gofoodpng.biz/wp-content/uploads/2017/01/GoldenBowl-Logo-small.png",
-            "https://gofoodpng.biz/wp-content/uploads/2017/02/Mr-Mikes-small.png",
-            "https://gofoodpng.biz/wp-admin/upload.php?item=269",
-            "https://gofoodpng.biz/wp-admin/upload.php?item=248"
+            int[] imageId = {
+            R.drawable.tastybiteslogo,
+            R.drawable.goldenbowllogosmall,
+            R.drawable.kopitiamlogosmall,
+                    R.drawable.beijingnoodlehouselogo,
+                    R.drawable.buffalologo,
+                    R.drawable.mrmikessmall,
+                    R.drawable.thecellarrestaurant,
+                    R.drawable.enzoslogo,
+                    R.drawable.fusionlogo,
+                    R.drawable.lamana,
+                    R.drawable.bigboi,
+                    R.drawable.tandoor,
+                    R.drawable.royal,
+                    R.drawable.mojosocial,
+
     };
 
 

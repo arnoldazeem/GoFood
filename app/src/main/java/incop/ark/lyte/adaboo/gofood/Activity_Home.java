@@ -124,20 +124,14 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
 
                             } else if (position == 2) {
 
-                                Intent myIntent = new Intent(Activity_Home.this, PostActivity.class);
-                                //myIntent.putExtra("key", value); //Optional parameters
-                                startActivity(myIntent);
+                                alertlunch();
 
                             } else if (position == 3) {
-                                alertme();
+                                alertgrocery();
                             } else if (position == 4) {
-
-                                Toast.makeText(Activity_Home.this, "You Clicked at " + position , Toast.LENGTH_SHORT).show();
-
+                                alertdeliver();
                             } else if (position == 5) {
-
                                 alertme();
-
                             }else if (position == 6) {
 
                                 Intent myInten = new Intent(Activity_Home.this, contactUs.class);
@@ -221,7 +215,7 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
                  a = new Restaurant_Model("RESTAURANTS", covers[1]);
                  albumList.add(a);
 
-                 a = new Restaurant_Model("SCHOOL LUNCH ORDERS", covers[2]);
+                 a = new Restaurant_Model("SCHOOL ORDERS", covers[2]);
                  albumList.add(a);
 
                  a = new Restaurant_Model("GROCERIES", covers[3]);
@@ -324,38 +318,28 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.home) {
-            // Handle the camera action
-        } else if (id == R.id.order_now) {
+       if (id == R.id.order_now) {
             Intent myIntent = new Intent(Activity_Home.this, OrderNow.class);
             //myIntent.putExtra("key", value); //Optional parameters
             startActivity(myIntent);
 
-
         } else if (id == R.id.restaurants) {
-
             Intent myIntent = new Intent(Activity_Home.this, GetRestaurants.class);
             //myIntent.putExtra("key", value); //Optional parameters
             startActivity(myIntent);
 
-
         } else if (id == R.id.school_lunch) {
-
+           alertlunch();
         } else if (id == R.id.groceries) {
-
+           alertgrocery();
         } else if (id == R.id.delivery_zone) {
-
+            alertdeliver();
         }else if (id == R.id.about_us) {
-
             alertme();
-
         }else if (id == R.id.contact_us) {
-
             Intent myInten = new Intent(Activity_Home.this, contactUs.class);
             //myIntent.putExtra("key", value); //Optional parameters
             startActivity(myInten);
-
         }
 
 
@@ -379,6 +363,46 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
 
 
        dialog.show();
+    }
+
+
+    public void alertdeliver(){
+
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_justified);
+        dialog.setTitle("DELIVERY ZONES.");
+        WebView view = new WebView(this);
+        view.setVerticalScrollBarEnabled(false);
+        ((RelativeLayout) dialog.findViewById(R.id.linear)).addView(view);
+        view.loadData(getString(R.string.delivery), "text/html; charset=utf-8", "utf-8");
+        dialog.show();
+    }
+
+
+
+    public void alertgrocery(){
+
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_justified);
+        dialog.setTitle("GROCERIES DELIVERED.");
+        WebView view = new WebView(this);
+        view.setVerticalScrollBarEnabled(false);
+        ((RelativeLayout) dialog.findViewById(R.id.linear)).addView(view);
+        view.loadData(getString(R.string.grocery), "text/html; charset=utf-8", "utf-8");
+        dialog.show();
+    }
+
+
+    public void alertlunch(){
+
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_justified);
+        dialog.setTitle("SCHOOL LUNCH ORDERS.");
+        WebView view = new WebView(this);
+        view.setVerticalScrollBarEnabled(false);
+        ((RelativeLayout) dialog.findViewById(R.id.linear)).addView(view);
+        view.loadData(getString(R.string.grocery), "text/html; charset=utf-8", "utf-8");
+        dialog.show();
     }
 
 

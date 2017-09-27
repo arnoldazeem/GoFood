@@ -13,7 +13,7 @@ public class restaurant_List_Bulk {
     public restaurant_List_Bulk() {
     }
 
-    public restaurant_List_Bulk(String name, String thumbnail,String numOfmenu ) {
+    public restaurant_List_Bulk(String name,String numOfmenu, String thumbnail ) {
         this.name = name;
         this.thumbnail = thumbnail;
         this.numOfmenu = numOfmenu;

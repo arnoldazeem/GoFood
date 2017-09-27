@@ -2,41 +2,38 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Home" />
+
         <item
             android:id="@+id/order_now"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/lunch"
             android:title="ORDER NOW" />
         <item
             android:id="@+id/restaurants"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/restaurant"
             android:title="RESTAURANTS" />
         <item
             android:id="@+id/school_lunch"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/order"
             android:title="SCHOOL LUNCH ORDERS" />
 
         <item
             android:id="@+id/groceries"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/grocery"
             android:title="GROCERIES" />
 
         <item
             android:id="@+id/delivery_zone"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/deliver"
             android:title="DELIVERY ZONES" />
 
         <item
             android:id="@+id/about_us"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/about"
             android:title="ABOUT US" />
 
         <item
             android:id="@+id/contact_us"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/contact"
             android:title="CONTACT US" />
 
     </group>
