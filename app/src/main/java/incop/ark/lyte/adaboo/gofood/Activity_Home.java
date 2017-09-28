@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
@@ -47,7 +48,7 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
     private static ViewPager mPager;
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
-    private static final Integer[] IMAGES= {R.drawable.banner1,R.drawable.banner2,R.drawable.banner3};
+    private static final Integer[] IMAGES= {R.drawable.slider1};
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
 
 
@@ -77,7 +78,7 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
 
 
         initCollapsingToolbar();
-        init();
+       init();
 
 
         //NAV drawer is used here
@@ -188,7 +189,7 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
                              collapsingToolbar.setTitle(getString(R.string.app_name));
                              isShow = true;
                          } else if (isShow) {
-                             collapsingToolbar.setTitle(getString(R.string.app_name));
+                             collapsingToolbar.setTitle("");
                              isShow = false;
                          }
                      }
@@ -420,15 +421,31 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
         mPager.setAdapter(new SlidingImage_Adapter(Activity_Home.this,ImagesArray));
 
 
-        CirclePageIndicator indicator = (CirclePageIndicator)
-                findViewById(R.id.indicator);
 
-        indicator.setViewPager(mPager);
+        Button imageLogo = (Button)findViewById(R.id.followfb);
+        imageLogo.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                String url = "https://www.facebook.com/gofoodpng/";
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
+      //  indicator.setOnClickListener(new );
+
+        //CirclePageIndicator indicator = (CirclePageIndicator)
+          //      findViewById(R.id.indicator);
+
+        //indicator.setViewPager(mPager);
 
         final float density = getResources().getDisplayMetrics().density;
 
         //Set circle indicator radius
-        indicator.setRadius(5 * density);
+       // indicator.setRadius(5 * density);
 
         NUM_PAGES =IMAGES.length;
 
@@ -451,7 +468,7 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
         }, 3000, 3000);
 
         // Pager listener over indicator
-        indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+       /*indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
             public void onPageSelected(int position) {
@@ -468,7 +485,7 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
             public void onPageScrollStateChanged(int pos) {
 
             }
-        });
+        });*/
 
     }
 
