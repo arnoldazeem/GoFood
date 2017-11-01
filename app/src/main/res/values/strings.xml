@@ -69,7 +69,7 @@ Imperdiet id felis lectus accumsan class, neque nullam quam, adipiscing turpis v
         <![CDATA[
         <html>
          <head></head>
-         <body style="text-align:justify;color:red;background-color:black;">
+         <body @font-face {font-family: MyFont; src: url(\"file:///android_asset/opensansregular.ttf\")}  body { font-family: MyFont;  font-size: 12px; style="text-align:justify;color:red;background-color:black;">
          "<p>K25 | Zone 1 CBD</p>"
          "<p>  2 Mile, 3 Mile, 4 Mile, 5 Mile, Badili, Boroko, East Boroko, Ela Beach, Gabutu, Gordons, Gordons 5, Gordons Industrials, Hohola, Kaevaga, Koki, Konedobu, Korobosea, Murray Barracks, New Town, Town, Waigani.
             </p>"

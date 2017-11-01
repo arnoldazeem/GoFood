@@ -17,10 +17,10 @@ import com.squareup.picasso.Picasso;
 public class CustomGrid extends BaseAdapter {
 
         private Context mContext;
-        private final String[] web;
+        private final String[][] web;
         private final int[] Imageid;
 
-        public CustomGrid(Context c,String[] web,int[] Imageid ) {
+        public CustomGrid(Context c,String[][] web,int[] Imageid ) {
             mContext = c;
             this.Imageid = Imageid;
             this.web = web;
@@ -64,7 +64,10 @@ public class CustomGrid extends BaseAdapter {
 
                 TextView textView = (TextView) grid.findViewById(R.id.grid_text);
                 ImageView imageView = (ImageView)grid.findViewById(R.id.grid_image);
-                textView.setText(web[position]);
+
+                String gotten = web[position][0];
+
+                textView.setText(gotten);
                // picasso
                // Picasso.with(mContext)
                //         .load(Imageid[position])

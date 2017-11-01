@@ -429,7 +429,6 @@ public class Activity_Home extends AppCompatActivity  implements NavigationView.
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 String url = "https://www.facebook.com/gofoodpng/";
-
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
                 startActivity(i);

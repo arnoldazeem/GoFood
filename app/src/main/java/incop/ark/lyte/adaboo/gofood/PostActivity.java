@@ -1,6 +1,7 @@
 package incop.ark.lyte.adaboo.gofood;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -37,7 +38,7 @@ import java.util.List;
 
     public class PostActivity extends AppCompatActivity {
 
-       private static final String JsonURL = "https://gofoodpng.biz/api/hello/get_categories_tastybites/";
+       private static final String JsonURL = "https://gofoodpng.biz/api/hello/get_categories_";
         private ProgressBar progressBar;
         // String data = "";
         // Defining the Volley request queue that handles the URL request concurrently
@@ -45,6 +46,8 @@ import java.util.List;
         ProgressDialog progress;
         JSONArray  products  = null;
         GridView grid;
+        String finals;
+        String urls;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +58,23 @@ import java.util.List;
 
            // progressBar=(ProgressBar)findViewById(R.id.progressBar);
 
+            Intent iin= getIntent();
+            Bundle b = iin.getExtras();
+
+            try {
+
+                urls =(String) b.get("url");
+            }catch (Exception e){
+                Log.d("url issues",e.toString());
+            }
+             finals = JsonURL + urls + "/";
+            Toast.makeText(PostActivity.this, "You Clicked at " +finals, Toast.LENGTH_SHORT).show();
             progress = new ProgressDialog(this);
             //initialize the progress dialog and show it
             progress.setMessage("loading The data....");
             progress.show();
 
-            JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, JsonURL, null, new Response.Listener<JSONObject>() {
+            JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, finals, null, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                 // TODO Auto-generated method stub
@@ -72,7 +86,6 @@ import java.util.List;
 
 
                         products = response.getJSONArray("results");
-
 
                         for (int i = 0; i < products.length();  i++) {
 
@@ -86,7 +99,7 @@ import java.util.List;
                             items.add(new restaurant_List_Bulk( separated[0],separated[1],separated[2]));
                             }else{
 
-                               // items.add(new restaurant_List_Bulk( separated[0],separated[1],null));
+                                items.add(new restaurant_List_Bulk( separated[0],separated[1],null));
                             }
                         }
 

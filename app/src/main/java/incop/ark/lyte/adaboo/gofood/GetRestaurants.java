@@ -26,7 +26,7 @@ public class GetRestaurants  extends AppCompatActivity {
         setContentView(R.layout.getrestaurants);
 
 
-            CustomGrid adapter = new CustomGrid(GetRestaurants.this, web, imageId);
+            CustomGrid adapter = new CustomGrid(GetRestaurants.this, webs, imageId);
             grid=(GridView)findViewById(R.id.grid);
             grid.setAdapter(adapter);
             grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -34,22 +34,25 @@ public class GetRestaurants  extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
+                    String vari = webs[position][1];
+                    Intent ii = new Intent(GetRestaurants.this, PostActivity.class);
+                    ii.putExtra("url", vari);
+                    startActivity(ii);
 
-                    switch(position)
-                    {
-                        case 0:
-                            Intent new1Activity = new Intent(GetRestaurants.this,PostActivity.class);
-                            startActivity(new1Activity);
-                            break;
-                        case 1:
-                            Intent myIntent = new Intent(GetRestaurants.this, PostActivity.class);
+                    //  switch(position)
+                  //  {
+                  //      case 0:
+                  //          Intent new1Activity = new Intent(GetRestaurants.this,PostActivity.class);
+                  //          startActivity(new1Activity);
+                  //          break;
+                 //       case 1:
+                 //           Intent myIntent = new Intent(GetRestaurants.this, PostActivity.class);
                             //myIntent.putExtra("key", value); //Optional parameters
-                            startActivity(myIntent);
-                            break;
-                        default:
-                            Toast.makeText(GetRestaurants.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
+                 //           startActivity(myIntent);
+                //            break;
+                //        default:
 
-                    }
+                 //   }
 
                 }
             });
@@ -59,8 +62,34 @@ public class GetRestaurants  extends AppCompatActivity {
 
     GridView grid;
 
-    String[] web = {
-            "Tasty Bites",
+
+
+    String[][] webs = {
+            {"Tasty Bites" ,"tastybites"} ,
+            {"Golden Bowl" ,"goldenbowl"} ,
+            {"Kopitiam" ,"kopitiam"} ,
+            {"Beijing Noodle House" ,"beijing"} ,
+
+            {"Buffalo Burger" ,"buffaloburger"} ,
+            {"Mr Mikes" ,"mrmikes"} ,
+            {"Cellar-Restaurant" ,"cellar"} ,
+            {"Enzo's Express Takeaway" ,"enzos"} ,
+
+            {"Fusion Bistro" ,"fusion"} ,
+            {"LAMANA" ,"lamana"} ,
+            {"Big Boi Burger" ,"bigboi"} ,
+
+            {"Tandoor on the Harbour" ,"tandoor"} ,
+            {"Royal Papua Yacht Club Restaurant" ,"rpyc"} ,
+            {"Mojo Social Restaurant" ,"mojo"} ,
+
+    } ;
+
+
+
+
+    String[]web = {
+            "Tasty Bites" ,
             "Golden Bowl",
             "Kopitiam",
             "Beijing Noodle House",
@@ -74,7 +103,8 @@ public class GetRestaurants  extends AppCompatActivity {
             "Tandoor on the Harbour",
             "Royal Papua Yacht Club Restaurant",
             "Mojo Social Restaurant",
-    } ;
+    };
+
             int[] imageId = {
             R.drawable.tastybiteslogo,
             R.drawable.goldenbowllogosmall,

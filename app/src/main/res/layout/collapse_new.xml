@@ -76,9 +76,9 @@
                         android:background="@drawable/fbfollow"
                         android:text="Follow us on FB"
                         android:textColor="@android:color/white"
-                        android:textSize="6dp"
-                        app:layout_anchor="@+id/include"
-                        app:layout_anchorGravity="top|center_horizontal" />
+                        android:textSize="8dp"
+                        android:layout_marginBottom="2dp"
+                       />
 
 
                 </LinearLayout>

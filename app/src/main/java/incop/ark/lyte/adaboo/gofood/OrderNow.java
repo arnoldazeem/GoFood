@@ -2,6 +2,7 @@ package incop.ark.lyte.adaboo.gofood;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
@@ -40,6 +41,9 @@ public class OrderNow extends AppCompatActivity implements View.OnClickListener 
 
         order.setOnClickListener(this);
 
+
+        Typeface face = Typeface.createFromAsset(getAssets(),"fonts/opensansregular.ttf");
+        //tv.setTypeface(face);
 
 
         text = "<html><body><p align=\"justify\">";
